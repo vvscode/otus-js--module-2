@@ -41,7 +41,14 @@ describe("styles.test", () => {
       const image = await page.screenshot();
       await browser.close();
 
-      expect(image).toMatchImageSnapshot();
+      expect(image).toMatchImageSnapshot(
+        process.env.CI
+          ? {
+              failureThreshold: 0.005,
+              failureThresholdType: "percent",
+            }
+          : undefined
+      );
     })
   );
 });
