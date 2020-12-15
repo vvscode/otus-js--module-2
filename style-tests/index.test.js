@@ -6,7 +6,7 @@ import { toMatchImageSnapshot } from "jest-image-snapshot";
 
 expect.extend({ toMatchImageSnapshot });
 
-// import ScreenshotTester from "puppeteer-screenshot-tester";
+const sleep = (x) => new Promise((r) => setTimeout(r, x));
 
 describe("styles.test", () => {
   let originalTimeout;
@@ -37,6 +37,7 @@ describe("styles.test", () => {
       // navigate to the page, served with webpack
       // IMPORTANT!: test assumes webpack is started
       await page.goto("http://localhost:9000", { waitUntil: "networkidle0" });
+      await sleep(3000);
 
       const image = await page.screenshot();
       await browser.close();
@@ -44,7 +45,7 @@ describe("styles.test", () => {
       expect(image).toMatchImageSnapshot(
         process.env.CI
           ? {
-              failureThreshold: 0.005,
+              failureThreshold: 0.1,
               failureThresholdType: "percent",
             }
           : undefined
