@@ -45,6 +45,11 @@ nav div {
   height: 80px;
 }
 
+h1 a {
+  font-size: 3rem;
+  vertical-align: text-bottom;
+}
+
 nav div a {
   vertical-align: bottom;
   height: 100%;
@@ -56,11 +61,6 @@ h1 {
   float: left;
   vertical-align: bottom;
   height: 80px;
-}
-
-h1 a {
-  font-size: 3rem;
-  vertical-align: text-bottom;
 }
 
 img {
